@@ -7,55 +7,50 @@ info() { printf "\033[1;34m[INFO]\033[0m %s\n" "$*"; }
 warn() { printf "\033[1;33m[WARN]\033[0m %s\n" "$*"; }
 error() { printf "\033[1;31m[ERR]\033[0m  %s\n" "$*" >&2; }
 
-link_file() {
+copy_item() {
 	local src="$1"
 	local dst="$2"
 
 	if [ -L "$dst" ] || [ -f "$dst" ] || [ -d "$dst" ]; then
-		if [ "$(readlink "$dst" 2>/dev/null)" = "$src" ]; then
-			info "Already linked: $dst"
-			return
-		fi
-
 		backup="${dst}.backup.$(date +%Y%m%d%H%M%S)"
 		warn "Backing up existing $dst to $backup"
 		mv "$dst" "$backup"
 	fi
 
-	ln -s "$src" "$dst"
-	info "Linked $dst → $src"
+	cp -r "$src" "$dst"
+	info "Copied $src → $dst"
 }
 
 install_home_files() {
-	info "Linking home/ files and directories..."
+	info "Copying home/ files and directories..."
 
-	# Link all items directly under home/ (both files and directories)
+	# Copy all items directly under home/ (both files and directories)
 	for item in "$DOTFILES_DIR/home"/*; do
 		[ -e "$item" ] || continue
 		name="$(basename "$item")"
 		dst="$HOME/.${name}"
-		link_file "$item" "$dst"
+		copy_item "$item" "$dst"
 	done
 }
 
 install_config_files() {
-	info "Linking config/ directories..."
+	info "Copying config/ directories..."
 	mkdir -p "$HOME/.config"
 	for dir in "$DOTFILES_DIR/config"/*; do
 		[ -d "$dir" ] || continue
 		name="$(basename "$dir")"
 		dst="$HOME/.config/$name"
-		link_file "$dir" "$dst"
+		copy_item "$dir" "$dst"
 	done
 }
 
 install_bin() {
-	info "Linking bin/ scripts..."
+	info "Copying bin/ scripts..."
 	mkdir -p "$HOME/bin"
 	for file in "$DOTFILES_DIR/bin/"*; do
 		[ -f "$file" ] || continue
 		dst="$HOME/bin/$(basename "$file")"
-		link_file "$file" "$dst"
+		copy_item "$file" "$dst"
 	done
 }
 
