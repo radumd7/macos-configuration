@@ -1,0 +1,4 @@
+# Tmux plugins - installed automatically by install.sh
+home/tmux/plugins/tpm/
+home/tmux/plugins/tmux-sensible/
+home/config/tmux/plugins/catppuccin/

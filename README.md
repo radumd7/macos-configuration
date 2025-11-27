@@ -79,7 +79,7 @@ The installer will:
 2. Install all packages, applications, and fonts from `Brewfile`
 3. Symlink configuration files to appropriate locations
 4. Apply macOS system defaults
-5. Install Oh My Zsh and Tmuxifier
+5. Install Oh My Zsh, Tmuxifier, and tmux plugins (TPM, tmux-sensible, catppuccin)
 
 ### What Gets Linked
 
@@ -154,7 +154,10 @@ bash ~/dotfiles/macos/defaults.sh
 
 1. **Restart your shell** or open a new terminal window
 2. Configure Powerlevel10k (first launch will prompt you)
-3. Install Tmux plugins: Open tmux and press `prefix + I` (default: `Ctrl+b` then `I`)
+3. **Start tmux** - All plugins are pre-installed and will load automatically:
+   - TPM (Tmux Plugin Manager)
+   - tmux-sensible (sensible defaults)
+   - catppuccin (theme)
 4. Review AeroSpace keybindings in `~/.aerospace.toml`
 5. Customize SketchyBar in `~/.config/sketchybar/`
 
