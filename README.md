@@ -88,11 +88,20 @@ The installer will:
 Each file or directory in `home/` gets symlinked to your home directory with a dot prefix:
 
 - `home/aerospace.toml` → `~/.aerospace.toml` - AeroSpace window manager config
-- `home/config/` → `~/.config/` - Application configs (ghostty, nvim, sketchybar, tmux, zed)
 - `home/tmux.conf` → `~/.tmux.conf` - Tmux configuration
-- `home/tmux/` → `~/.tmux/` - Tmux plugins and additional configs
+- `home/tmux/` → `~/.tmux/` - Tmux plugins directory
 - `home/wezterm.lua` → `~/.wezterm.lua` - WezTerm config
 - `home/zshrc` → `~/.zshrc` - Zsh configuration
+
+**Config directory** (`config/` → `~/.config/`)
+
+Each subdirectory gets symlinked individually:
+
+- `config/ghostty/` → `~/.config/ghostty/` - Ghostty terminal settings
+- `config/nvim/` → `~/.config/nvim/` - Neovim configuration
+- `config/sketchybar/` → `~/.config/sketchybar/` - SketchyBar setup
+- `config/tmux/` → `~/.config/tmux/` - Tmux plugin configs
+- `config/zed/` → `~/.config/zed/` - Zed editor settings
 
 **Bin directory** (`bin/` → `~/bin/`)
 

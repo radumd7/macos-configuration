@@ -38,6 +38,17 @@ install_home_files() {
 	done
 }
 
+install_config_files() {
+	info "Linking config/ directories..."
+	mkdir -p "$HOME/.config"
+	for dir in "$DOTFILES_DIR/config"/*; do
+		[ -d "$dir" ] || continue
+		name="$(basename "$dir")"
+		dst="$HOME/.config/$name"
+		link_file "$dir" "$dst"
+	done
+}
+
 install_bin() {
 	info "Linking bin/ scripts..."
 	mkdir -p "$HOME/bin"
@@ -118,6 +129,7 @@ main() {
 
 	install_brew
 	install_home_files
+	install_config_files
 	install_bin
 	apply_macos_defaults
 	install_deps
