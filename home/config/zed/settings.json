@@ -1,0 +1,114 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "inlay_hints": {
+    "enabled": true
+  },
+  "status_bar": {
+    "cursor_position_button": false,
+    "active_language_button": true
+  },
+  "close_on_file_delete": true,
+  "relative_line_numbers": true,
+  "vertical_scroll_margin": 20.0,
+  "edit_predictions": {
+    "mode": "subtle"
+  },
+  "features": {
+    "edit_prediction_provider": "copilot"
+  },
+  "scroll_beyond_last_line": "vertical_scroll_margin",
+  "icon_theme": "Catppuccin Mocha",
+  "telemetry": {
+    "diagnostics": false,
+    "metrics": false
+  },
+  "vim_mode": true,
+  "ui_font_size": 16,
+  "buffer_font_size": 15,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Catppuccin Mocha"
+  },
+  "languages": {
+    "TypeScript": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.removeUnusedImports": true
+      }
+    },
+    "TSX": {
+      "code_actions_on_format": {
+        "source.organizeImports": true,
+        "source.removeUnusedImports": true
+      }
+    }
+  },
+  "lsp": {
+    "vtsls": {
+      "settings": {
+        "typescript": {
+          "preferences": {
+            "importModuleSpecifier": "non-relative"
+          }
+        }
+      }
+    },
+    "eslint": {
+      "enabled": false
+    }
+  },
+  "tab_bar": {
+    "show_nav_history_buttons": false,
+    "show_tab_bar_buttons": false
+  },
+  "tabs": {
+    "file_icons": true,
+    "git_status": true,
+    "show_diagnostics": "all"
+  },
+  "toolbar": {
+    "quick_actions": false,
+    "selections_menu": false
+  },
+  "terminal": {
+    "button": false
+  },
+  "git_panel": {
+    "button": false
+  },
+  "outline_panel": {
+    "button": false
+  },
+  "collaboration_panel": {
+    "button": false
+  },
+  "diagnostics": {
+    "button": true,
+    "inline": {
+      "enabled": true
+    }
+  },
+  "search": {
+    "button": false
+  },
+  "debugger": {
+    "button": false
+  },
+  "notification_panel": {
+    "button": false
+  },
+  "project_panel": {
+    "button": false,
+    "auto_fold_dirs": true,
+    "default_width": 420,
+    "indent_size": 10
+  }
+}
