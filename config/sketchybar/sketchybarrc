@@ -2,7 +2,7 @@
 # Not too different from the base starting config!
 
 PLUGIN_DIR="$CONFIG_DIR/plugins"
-ITEM_DIR="$CONFIG_DIR/items" 
+ITEM_DIR="$CONFIG_DIR/items"
 
 #### Import Colors
 source "$CONFIG_DIR/colors.sh" # Loads all defined colors
@@ -14,7 +14,7 @@ source "$CONFIG_DIR/colors.sh" # Loads all defined colors
 # If you are looking for other colors, see the color picker:
 # https://felixkratz.github.io/SketchyBar/config/tricks#color-picker
 
-sketchybar --bar position=top height=25 radius=30 #color=$BAR_COLOR #color=0xff001f30 color=0x40000000
+sketchybar --bar position=top height=27 radius=30 color=$BAR_COLOR padding_left=10 padding_right=10
 
 ##### Changing Defaults #####
 # We now change some default values, which are applied to all further items.
@@ -26,8 +26,8 @@ default=(
   padding_right=2
   icon.font="Hack Nerd Font:Bold:12.0"
   label.font="SF Pro:Semibold:12.0"
-  icon.color=0xffffffff
-  label.color=0xffffffff
+  icon.color=$ICON_COLOR
+  label.color=$LABEL_COLOR
   icon.padding_left=0
   icon.padding_right=0
   label.padding_left=0
@@ -49,10 +49,10 @@ for monitor in $(aerospace list-monitors --format "%{monitor-appkit-nsscreen-scr
       --subscribe space.$sid aerospace_workspace_change \
       --set space.$sid \
       drawing=on \
-      background.color=0x44ffffff \
+      background.color=$ITEM_BG_COLOR \
       background.corner_radius=5 \
       background.drawing=on \
-      background.border_color=0xAAFFFFFF \
+      background.border_color=$ACCENT_COLOR \
       background.border_width=0 \
       background.height=18 \
       icon="$sid" \
@@ -66,8 +66,8 @@ for monitor in $(aerospace list-monitors --format "%{monitor-appkit-nsscreen-scr
       click_script="aerospace workspace $sid" \
       script="$CONFIG_DIR/plugins/aerospace.sh $sid" \
       icon.shadow.distance=2 \
-      icon.shadow.color=0xA0000000 \
-      label.shadow.color=0xA0000000 \
+      icon.shadow.color=$SHADOW_COLOR \
+      label.shadow.color=$SHADOW_COLOR \
       label.shadow.distance=2
   done
 done
@@ -107,18 +107,51 @@ source "$ITEM_DIR/front_app.sh"
 # https://felixkratz.github.io/SketchyBar/config/events
 
 sketchybar --add item clock right \
-  --set clock update_freq=10 script="$PLUGIN_DIR/clock.sh" \
+  --set clock update_freq=10 \
+  background.color=$PEACH \
+  background.corner_radius=5 \
+  background.height=18 \
+  background.drawing=on \
+  icon.color=$BASE \
+  label.color=$BASE \
+  icon.padding_left=8 \
+  icon.padding_right=0 \
+  label.padding_left=0 \
+  label.padding_right=8 \
+  script="$PLUGIN_DIR/clock.sh" \
   --add item volume right \
-  --set volume script="$PLUGIN_DIR/volume.sh" \
+  --set volume \
+  background.color=$BLUE \
+  background.corner_radius=5 \
+  background.height=18 \
+  background.drawing=on \
+  icon.color=$BASE \
+  label.color=$BASE \
+  icon.padding_left=8 \
+  icon.padding_right=0 \
+  label.padding_left=0 \
+  label.padding_right=8 \
+  script="$PLUGIN_DIR/volume.sh" \
   --subscribe volume volume_change \
   --add item battery right \
-  --set battery update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+  --set battery update_freq=120 \
+  background.color=$GREEN \
+  background.corner_radius=5 \
+  background.height=18 \
+  background.drawing=on \
+  icon.color=$BASE \
+  label.color=$BASE \
+  icon.padding_left=8 \
+  icon.padding_right=0 \
+  label.padding_left=0 \
+  label.padding_right=8 \
+  script="$PLUGIN_DIR/battery.sh" \
   --subscribe battery system_woke power_source_change \
   --add item swap e \
-  icon="" \
+  icon="" \
   label.font="Hack Nerd Font:Italic:13.0" \
-  icon.color=0x44FFFFFF \
-  label.color=0x44FFFFFF
+  icon.color=$OVERLAY0 \
+  label.color=$OVERLAY0
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
@@ -127,8 +160,8 @@ sketchybar --update
 FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
 for sid in $(aerospace list-workspaces --all); do
   if [ "$sid" = "$FOCUSED_WORKSPACE" ]; then
-    sketchybar --set space.$sid background.color=0x9c7c91ff label.shadow.drawing=on icon.shadow.drawing=on background.border_width=1
+    sketchybar --set space.$sid background.color=$ACCENT_COLOR icon.color=$BASE label.color=$BASE label.shadow.drawing=off icon.shadow.drawing=off background.border_width=1
   else
-    sketchybar --set space.$sid background.color=0x44FFFFFF label.shadow.drawing=off icon.shadow.drawing=off background.border_width=0
+    sketchybar --set space.$sid background.color=$ITEM_BG_COLOR icon.color=$ICON_COLOR label.color=$LABEL_COLOR label.shadow.drawing=off icon.shadow.drawing=off background.border_width=0
   fi
 done
