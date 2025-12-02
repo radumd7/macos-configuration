@@ -68,7 +68,7 @@ Note: SF Pro font must be installed manually from [Apple Developer](https://deve
 ### Quick Install
 
 ```bash
-git clone https://github.com/radumd7/dotfiles.git ~/dotfiles
+git clone https://github.com/radumd7/macos-configuration.git ~/dotfiles
 cd ~/dotfiles
 ./install.sh
 ```
@@ -77,25 +77,26 @@ The installer will:
 
 1. Install Homebrew (if not present)
 2. Install all packages, applications, and fonts from `Brewfile`
-3. Symlink configuration files to appropriate locations
+3. Copy configuration files to appropriate locations
 4. Apply macOS system defaults
 5. Install Oh My Zsh, Tmuxifier, and tmux plugins (TPM, tmux-sensible, catppuccin)
 
-### What Gets Linked
+### What Gets Copied
 
 **Home directory** (`home/` → `~/.*`)
 
-Each file or directory in `home/` gets symlinked to your home directory with a dot prefix:
+Each file or directory in `home/` gets copied to your home directory with a dot prefix:
 
 - `home/aerospace.toml` → `~/.aerospace.toml` - AeroSpace window manager config
 - `home/tmux.conf` → `~/.tmux.conf` - Tmux configuration
 - `home/tmux/` → `~/.tmux/` - Tmux plugins directory
 - `home/wezterm.lua` → `~/.wezterm.lua` - WezTerm config
 - `home/zshrc` → `~/.zshrc` - Zsh configuration
+- `home/p10k.zsh` → `~/.p10k.zsh` - Powerlevel10k theme configuration
 
 **Config directory** (`config/` → `~/.config/`)
 
-Each subdirectory gets symlinked individually:
+Each subdirectory gets copied individually:
 
 - `config/ghostty/` → `~/.config/ghostty/` - Ghostty terminal settings
 - `config/nvim/` → `~/.config/nvim/` - Neovim configuration
@@ -119,7 +120,7 @@ All existing files are backed up before being replaced. Backups are timestamped:
 
 ### Modifying Configurations
 
-Since files are symlinked, you can edit them in the `~/dotfiles` directory and changes take effect immediately (or after reloading the relevant application).
+Since files are copied (not symlinked), you should edit them in their destination locations (`~/.*` or `~/.config/`). If you want to preserve changes back to the repository, you'll need to manually copy them back to the `~/dotfiles` directory.
 
 ### Adding More Packages
 
@@ -175,7 +176,7 @@ bash ~/dotfiles/macos/defaults.sh
 - If Oh My Zsh installation fails, check `~/.zshrc` and manually run the installer
 - For Homebrew issues, ensure Xcode Command Line Tools are installed: `xcode-select --install`
 - macOS defaults may require logout/login to fully apply
-- Check symlinks with `ls -la ~` and `ls -la ~/.config`
+- Check copied files with `ls -la ~` and `ls -la ~/.config`
 
 ## License
 
